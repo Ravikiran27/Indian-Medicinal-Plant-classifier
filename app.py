@@ -3,6 +3,13 @@ Indian Medicinal Plant Classifier - Streamlit Web App
 =====================================================
 Professional web interface for classifying 80 Indian medicinal plant species
 using the fine-tuned EfficientNet model.
+
+Features:
+- AI-powered plant identification with EfficientNet-B0
+- Medicinal uses and properties via Google Gemini AI
+- Toxicity warnings and safe usage guidelines
+- Regional language support (Kannada)
+- Traditional Ayurvedic knowledge preservation
 """
 
 import streamlit as st
@@ -16,6 +23,9 @@ import numpy as np
 from pathlib import Path
 import plotly.graph_objects as go
 import plotly.express as px
+
+# Import Gemini-powered herb information module
+from herb_info import display_plant_info, get_plant_information
 
 # Page config
 st.set_page_config(
@@ -174,6 +184,12 @@ def main():
     st.markdown("""
     **Professional AI-powered identification of 80 Indian medicinal plant species**  
     Upload an image of a medicinal plant leaf, and the model will predict the species with confidence scores.
+    
+    **✨ New Features:**
+    - 🌿 Medicinal uses powered by Google Gemini AI
+    - ⚠️ Safety warnings and toxicity information
+    - 🗣️ Regional language support (ಕನ್ನಡ Kannada)
+    - 📚 Traditional Ayurvedic knowledge
     """)
     
     # Sidebar
@@ -190,6 +206,12 @@ def main():
             "Show All Class Probabilities",
             value=False,
             help="Display probability distribution across all 80 classes."
+        )
+        
+        show_medicinal_info = st.checkbox(
+            "Show Medicinal Information (Gemini AI)",
+            value=True,
+            help="Display medicinal uses, toxicity warnings, and Kannada information powered by Google Gemini AI."
         )
         
         st.markdown("---")
@@ -294,12 +316,33 @@ def main():
         else:
             st.info("👆 Upload an image to get started")
     
+    # Medicinal Information Section (full width)
+    if uploaded_file is not None and show_medicinal_info:
+        try:
+            # Display comprehensive medicinal information powered by Gemini AI
+            display_plant_info(pred_class, pred_conf)
+        except Exception as e:
+            st.warning(f"⚠️ Could not fetch medicinal information: {e}")
+            st.info("""
+            **Note**: To enable Gemini AI features:
+            1. Create a `.env` file in the project root
+            2. Add your Gemini API key: `GEMINI_API_KEY=your_key_here`
+            3. Get a free API key at: https://makersuite.google.com/app/apikey
+            """)
+        else:
+            st.info("👆 Upload an image to get started")
+    
     # Footer
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center'>
-        <p><strong>Indian Medicinal Plant Classifier</strong> | 80 Species Recognition</p>
+        <p><strong>Indian Medicinal Plant Classifier</strong> | 80 Species Recognition | AI-Powered Medicinal Information</p>
         <p>Model: EfficientNet-B0 fine-tuned on Indian Medicinal Plant Dataset</p>
+        <p>Medicinal Information: Google Gemini AI | Regional Support: ಕನ್ನಡ Kannada</p>
+        <p style='font-size: 0.85em; color: #666;'>
+            ⚕️ <strong>Medical Disclaimer:</strong> This tool is for educational purposes only. 
+            Always consult qualified healthcare professionals before using any medicinal plant.
+        </p>
     </div>
     """, unsafe_allow_html=True)
 

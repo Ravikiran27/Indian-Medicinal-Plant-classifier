@@ -13,6 +13,8 @@
 
 This project implements a state-of-the-art computer vision system to classify **80 different species of Indian medicinal plants** from leaf images. Using transfer learning with EfficientNet-B0 and fine-tuning on the Indian Medicinal Plant Dataset, the model achieves high accuracy in identifying plants that are crucial for traditional Ayurvedic medicine and biodiversity conservation.
 
+**✨ NEW**: Now powered by **Google Gemini AI** for comprehensive medicinal information, toxicity warnings, and regional language support!
+
 ### 🎯 Key Highlights
 
 - **Model**: EfficientNet-B0 pretrained on ImageNet-1K
@@ -21,6 +23,32 @@ This project implements a state-of-the-art computer vision system to classify **
 - **Training**: Mixed-precision training (FP16) on Kaggle GPU
 - **Deployment**: Interactive Streamlit web application
 - **Inference**: Fast predictions with optional Test-Time Augmentation (TTA)
+- **🌟 AI-Powered Features**: Medicinal uses, toxicity warnings, and Kannada translations via Google Gemini
+
+### ✨ AI-Powered Educational Features
+
+#### 🌿 Medicinal Information
+- **Top 3 Medicinal Uses**: Evidence-based traditional and modern applications
+- **Traditional Knowledge**: Ayurvedic wisdom and regional practices
+- **Usage Guidelines**: Safe consumption methods and dosage recommendations
+
+#### ⚠️ Safety & Toxicity Warnings
+- **Risk Assessment**: Low/Moderate/High toxicity classification
+- **Contraindications**: Who should avoid the plant
+- **Side Effects**: Common adverse reactions if misused
+- **Safe Usage**: Preparation methods and duration limits
+
+#### 🗣️ Regional Language Support
+- **Kannada Integration**: ಕನ್ನಡ names and traditional uses
+- **Community Accessibility**: Local language support for Karnataka communities
+- **Cultural Preservation**: Documenting traditional knowledge
+
+#### 📚 Educational Mission
+Combining ancient Ayurvedic wisdom with modern AI technology to:
+- Preserve traditional medicinal knowledge
+- Promote safe and informed usage
+- Make information accessible to local communities
+- Bridge traditional and evidence-based medicine
 
 ---
 
@@ -138,7 +166,10 @@ Top-5 Predictions with Confidence Scores
 Indian-Medicinal-Plant-classifier/
 ├── 📓 notebookd41e7c18d6.ipynb       # Training notebook (Kaggle-ready)
 ├── 🎨 app.py                          # Streamlit web application
+├── 🌿 herb_info.py                    # Gemini AI medicinal information module
 ├── 📦 requirements.txt                # Python dependencies
+├── 🔐 .env                            # Environment variables (API keys) - DO NOT COMMIT
+├── 🚫 .gitignore                      # Git exclusion rules
 ├── 📖 README.md                       # This file
 ├── 📘 README_STREAMLIT.md             # Streamlit app documentation
 ├── 📂 impc_outputs/                   # Model artifacts (generated after training)
@@ -175,22 +206,33 @@ Indian-Medicinal-Plant-classifier/
    pip install -r requirements.txt
    ```
 
-3. **Train the model (on Kaggle)**
+3. **Configure Gemini AI (Optional - for medicinal information features)**
+   
+   Get a free API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   
+   Create a `.env` file in the project root:
+   ```bash
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+   
+   **⚠️ Important**: Never commit your `.env` file to GitHub (already in `.gitignore`)
+
+4. **Train the model (on Kaggle)**
    - Upload `notebookd41e7c18d6.ipynb` to [Kaggle](https://www.kaggle.com/)
    - Add the [Indian Medicinal Plant Dataset](https://www.kaggle.com/datasets/aryashah2k/indian-medicinal-plant-image-dataset) as input
    - Enable GPU accelerator (P100/T4)
    - Click "Run All"
    - Download `impc_outputs/` folder after training
 
-4. **Run the Streamlit app**
+5. **Run the Streamlit app**
    ```bash
    streamlit run app.py
    ```
 
-5. **Open your browser**
+6. **Open your browser**
    - Navigate to `http://localhost:8501`
    - Upload a plant leaf image
-   - Get instant predictions!
+   - Get instant predictions with medicinal information!
 
 ---
 
@@ -220,6 +262,10 @@ Features:
 - 📤 Upload image (JPG, PNG, BMP)
 - 🔍 Instant predictions with confidence scores
 - 📊 Top-5 predictions visualization
+- 🌿 **Medicinal uses** powered by Google Gemini AI
+- ⚠️ **Toxicity warnings** and safe usage guidelines
+- 🗣️ **Kannada translations** (ಕನ್ನಡ) for regional accessibility
+- 📚 **Traditional Ayurvedic knowledge** preservation
 - ⚡ Optional Test-Time Augmentation
 - 📈 Model performance metrics display
 
@@ -348,9 +394,16 @@ Stratified sampling ensures balanced class distribution across splits.
 - [ ] **Model Ensemble**: Combine multiple architectures
 - [ ] **Mobile App**: Flutter/React Native deployment
 - [ ] **API Deployment**: FastAPI REST endpoint
-- [ ] **Multi-language Support**: Hindi, Tamil, Bengali labels
-- [ ] **Plant Information**: Add medicinal properties database
+- [ ] **Multi-language Support**: Hindi, Tamil, Bengali, Sanskrit labels
+- [x] ✅ **Plant Information**: Medicinal properties via Google Gemini AI
+- [x] ✅ **Toxicity Warnings**: Safety information and contraindications
+- [x] ✅ **Regional Language**: Kannada (ಕನ್ನಡ) support
 - [ ] **Explainability**: Grad-CAM visualizations
+- [ ] **Enhanced Gemini Features**: 
+  - Voice output for medicinal information
+  - Image-based queries for plant parts
+  - Seasonal availability information
+  - Growing conditions and cultivation tips
 
 ### Research Directions
 
@@ -410,6 +463,8 @@ The Indian Medicinal Plant Dataset is provided under **CC BY 4.0** license. Plea
 - **Deployment**: [Streamlit](https://streamlit.io/) for rapid prototyping
 - **Visualization**: [Plotly](https://plotly.com/) for interactive charts
 - **Platform**: [Kaggle](https://www.kaggle.com/) for free GPU training
+- **AI Information**: [Google Gemini AI](https://ai.google.dev/) for medicinal knowledge
+- **Traditional Knowledge**: Ayurvedic texts and Karnataka herbal medicine practitioners
 
 ---
 

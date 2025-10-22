@@ -1,3 +1,36 @@
 .venv
 README_STREAMLIT.md
 old.ipynb
+indian_medicinal_plant_classifier.ipynb
+# Environment variables - NEVER commit API keys
+.env
+*.env
+.env.local
+.ipynb
+*.ipynb 
+
+# Model outputs (large files)
+impc_outputs/
+*.pth
+*.pt
+*.onnx
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
