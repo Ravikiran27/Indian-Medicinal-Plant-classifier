@@ -1,0 +1,14 @@
+# Indian Medicinal Plant Classifier - Streamlit Dependencies
+
+# Core ML/DL
+torch>=2.0.0
+torchvision>=0.15.0
+Pillow>=9.0.0
+numpy>=1.24.0
+
+# Streamlit and visualization
+streamlit>=1.28.0
+plotly>=5.14.0
+
+# Utils
+pathlib
